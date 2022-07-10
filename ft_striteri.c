@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 10:09:14 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/09 16:09:38 by sdeeyien         ###   ########.fr       */
+/*   Created: 2022/06/25 10:44:29 by sdeeyien          #+#    #+#             */
+/*   Updated: 2022/07/06 12:46:37 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-size_t	ft_strlen(const char *s)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	if (s)
 	{
-		i++;
-	}
-	return (i);
+		while (s[i])
+		{	
+			f(i, &s[i]);
+			i++;
+		}
+	}	
 }
-/*
-#include <stdio.h>
-#include <string.h>
-int	main(void)
-{	char 	str[] = "abc";
-
-	printf("ft_strlen = %lu\n", ft_strlen(str));
-	printf("strlen = %lu\n", strlen(str));
-}*/

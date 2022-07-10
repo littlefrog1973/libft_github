@@ -6,79 +6,79 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:06:55 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/16 14:57:20 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/08 23:08:32 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <libft.h>
 
-static size_t	num_dim(char const *s, char c)
+static void	do_split(char const *s, size_t count, size_t *tmp_pos, char **split)
 {
-	size_t	i;
-	size_t	count;
-
-	i = 0;
-	count = 0;
-	while (*(s + i))
-	{
-		if (*(s + i) == c)
-		{
-			count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
-static size_t	dim_pos(char const *s, char c, size_t *tmp_pos)
-{
-	size_t	i;
-	size_t	count;
-
-	i = 0;
-	count = 0;
-	tmp_pos[0] = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-		{
-			++count;
-			tmp_pos[count] = i;
-		}
-		i++;
-	}
-	tmp_pos[count + 1] = i;
-	return (count);
-}
-
-void	do_split(char const *s, size_t count, size_t  *tmp_pos, char **split)
-{
-	size_t	i;
-	char	*tmp_str;
-	unsigned int	start;
+	size_t			i;
+	char			*tmp_str;
 
 	i = 0;
 	tmp_str = 0;
-	while (i <= count)
+	while (i < count)
 	{
-		*split = (char *) malloc((tmp_pos[i + 1] - tmp_pos[i] + 1));
-		start = (unsigned int) tmp_pos[i] + 1;
-		if (i == 0)
-		{
-			tmp_str = ft_substr(s, 0, tmp_pos[1]);
-		}
-		else
-		{
-			tmp_str = ft_substr(s, start, tmp_pos[i + 1] - tmp_pos[i]);
-		}
-		printf("tmp_str[%lu] = %s\n", i, tmp_str);
-		ft_strlcpy(*(split + i), tmp_str, tmp_pos[i + 1] - tmp_pos[i] + 1);
-		printf("%s\n",*(split + i));
-		free(tmp_str);
-		i++;	
+		tmp_str = (char *) malloc(tmp_pos[2 * i + 1] + 1);
+		ft_memcpy(tmp_str, (s + tmp_pos[2 * i]), tmp_pos[2 * i + 1]);
+		tmp_str[tmp_pos[2 * i + 1]] = '\0';
+		*(split + i) = tmp_str;
+		i++;
 	}
-	free(tmp_pos);
+	*(split + i) = NULL;
+}
+
+static void	make_tmp_pos(char const *deli_pos, size_t *tmp_pos, char c)
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	flag;
+
+	i = 0;
+	j = 0;
+	flag = 0;
+	while (deli_pos[i])
+	{
+		if (deli_pos[i] == c)
+			flag = 0;
+		if (deli_pos[i] != c && !flag)
+		{
+			tmp_pos[2 * j] = i;
+			k = 0;
+			while (deli_pos[i + k] != c && deli_pos[i + k] != '\0')
+				k++;
+			tmp_pos[(2 * j) + 1] = k;
+			flag = 1;
+			j++;
+		}
+		i++;
+	}
+}
+
+static size_t	word_count(char const *deli_pos, char c)
+{
+	size_t	i;
+	size_t	j;
+	size_t	flag;
+
+	i = 0;
+	j = 0;
+	flag = 0;
+	while (deli_pos[i])
+	{
+		if (deli_pos[i] == c)
+			flag = 0;
+		if (deli_pos[i] != c && !flag)
+		{
+			flag = 1;
+			j++;
+		}
+		i++;
+	}
+	return (j);
 }
 
 char	**ft_split(char const *s, char c)
@@ -86,40 +86,49 @@ char	**ft_split(char const *s, char c)
 	size_t	count;
 	char	**split;
 	size_t	*tmp_pos;
+	size_t	len;
 
-	split = 0;
-	count = 0;
-	count = num_dim(s, c);
-	if (count == ft_strlen(s) || count == 0)
+	if (!s)
+		return ((char **) NULL);
+	len = ft_strlen(s);
+	count = word_count(s, c);
+	if (count == 0 || count == len || len == 0 || !s)
 	{
-		exit (1);
+		split = (char **) calloc(1, sizeof(char *));
+		return (split);
 	}
-	tmp_pos = (size_t *) malloc((count + 2) * sizeof(size_t));
-	if (!tmp_pos)
+	else
 	{
-		return (NULL);
+		tmp_pos = (size_t *) malloc(count * 2 * sizeof(size_t));
+		split = (char **) malloc((count + 1) * sizeof(char *));
+		if (!tmp_pos || !split)
+			return ((char **) NULL);
+		make_tmp_pos(s, tmp_pos, c);
+		do_split(s, count, tmp_pos, split);
+		free(tmp_pos);
 	}
-	count = dim_pos(s, c, tmp_pos);
-	split = (char **) malloc((count + 1) * sizeof(char *));
-	do_split(s, count, tmp_pos, split);
 	return (split);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
 {
-	char str[] = "0123456789";
+	char str[] = "\0aa\0bbb";
+//	char str[] = ",,,,,,,,,,,,,,";
 	char **split;
-	size_t i;
-	
-	split = 0;
-	split = ft_split(str, '4');
+	int	i;
+//	size_t	count;
+//	size_t	ttmp_pos[1000];
+
+	split = ft_split(str, '\0');
+	if (!split)
+		exit (1);
 	i = 0;
-	while (i < 2)
+	while (*split)
 	{
-		printf("split[%lu] = %s\n", i, *(split + i));
-		i++;
+		printf("split[%d] = %s\n", i, *(split + i));
+		split++;
 	}
 	return (0);
-}
+}*/

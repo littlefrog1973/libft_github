@@ -6,14 +6,11 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:58:59 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/08 05:49:50 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/06/23 12:00:10 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t	ft_strlen(const char *s);
+#include <libft.h>
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
@@ -24,6 +21,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return ((char *) haystack);
 	}
 	len_to_cmp = ft_strlen(needle);
+	if (!haystack)
+		ft_memset(NULL, 1, 100);
 	while (haystack && len > 0)
 	{
 		if (len < len_to_cmp)
@@ -40,14 +39,15 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	return (0);
 }
 /*
+#include <stdio.h>
 #include <string.h>
 
 int	main(void)
 {
 	char str1[] = "abcdefghij";
-	char str2[] = "";
+	char *str2 = NULL;
 
-	printf("%s\n", strnstr(str1, str2, 0));
-	printf("%s\n", ft_strnstr(str1, str2,0));
+//	printf("%s\n", strnstr(str1, str2, 3));
+	printf("%s\n", ft_strnstr(str2, str1,3));
 	return (0);
 }*/

@@ -6,46 +6,74 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:46:02 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/16 23:44:55 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/09 06:10:21 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-int	ft_atoi(const char *str)
+static const char	*find_digit(const char *str, int *sign, long int *base)
 {
 	int	i;
-	int	sign;
-	int	base;
 
 	i = 0;
-	sign = 1;
-	base = 0;
+	*base = 0;
+	*sign = 1;
 	while (ft_strchr(" \t\n\v\f\r", str[i]))
 	{
 		i++;
 	}
 	if (str[i] == '-' || str[i] == '+')
 	{
-		sign = 1 - 2 * (str[i] == '-');
+		*sign = 1 - 2 * (str[i] == '-');
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		base = base * 10 + str[i] - '0';
-		i++;
-	}
-	return (base * sign);
+	return (&str[i]);
 }
 
+int	ft_atoi(const char *str)
+{
+	long int	base;
+	int			sign;
+
+	str = find_digit(str, &sign, &base);
+	while (*str >= '0' && *str <= '9')
+	{
+		if (base == 9223372036854775807 / 10 && *str >= '7' && sign == 1)
+		{
+			return (-1);
+		}
+		else if (base == 9223372036854775807 / 10 && *str >= '8' && sign == -1)
+		{
+			return (0);
+		}
+		else if (base > 9223372036854775807 / 10)
+		{
+			return (-(sign == 1));
+		}
+		else
+		{
+			base = base * 10 + *str - '0';
+		}
+		str++;
+	}
+	return ((int) base * sign);
+}
+/*
 #include <stdlib.h>
-#include <stdio.h>
 
 int	main(void)
 {
-	char	str[] = "-9223372036854775811";
-
+//	char	str[] = "9223372036854775809";
+//	char	str[] = "-9323372036854775808";
+	char	str[] = "";
+//	char	str[] = "4611686018427387905";
+//	char	str[] = "2147483648";
+//	char	str[] = "2720202020";
+	
 	printf("int of str (atoi) = %d\n", atoi(str));
 	printf("int of str (ft_atoi) = %d\n", ft_atoi(str));
+	printf("LONG_MAX = %ld\n",LONG_MAX);
+	printf("LONG_MIN = %ld\n",LONG_MIN);
 	return (0);
-}
+}*/

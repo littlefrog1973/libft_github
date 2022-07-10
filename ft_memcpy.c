@@ -6,13 +6,13 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/04 05:52:16 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/11 12:30:39 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/06/22 17:20:31 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char	*source;
 	unsigned char	*destination;
@@ -21,7 +21,7 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 	source = (unsigned char *) src;
 	destination = (unsigned char *) dst;
 	i = 0;
-	while (i < n)
+	while (i < n && (dst || src))
 	{
 		destination[i] = source[i];
 		i++;
@@ -31,19 +31,22 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 /*
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 int	main(void)
 {
-	unsigned char	b[10] = {1,1,1,1,1,1,1,1,1,1};
-	unsigned char	d[10] = {1,1,1,1,1,1,1,1,1,1};
-	unsigned char	c[10] = {5,5,5,5,5,5,5,5,5,5};
-	size_t	i;
+//	unsigned char	b[10] = {1,1,1,1,1,1,1,1,1,1};
+//	unsigned char	d[10] = {1,1,1,1,1,1,1,1,1,1};
+//	unsigned char	*e;
+//	unsigned char	c[10] = {'\0','\0','\0','\0','\0',5,5,5,5,5};
+//	size_t	i;
 
-	ft_memcpy(b, c, 5);
-	memcpy(d, c, 5);
+//	e = NULL;
+	ft_memcpy(NULL, NULL, 3);
+//	memcpy(NULL, NULL, 3);
 	for (i = 0; i < 10; i++)
 	{
-		printf("b[%lu] = %d\n", i, b[i]);
+		printf("b[%lu] = %d\n", i, e[i]);
 	}
 	for (i = 0; i < 10; i++)
 	{

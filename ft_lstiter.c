@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 10:09:14 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/09 16:09:38 by sdeeyien         ###   ########.fr       */
+/*   Created: 2022/06/28 05:47:48 by sdeeyien          #+#    #+#             */
+/*   Updated: 2022/07/06 12:43:14 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-size_t	ft_strlen(const char *s)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
+	if (lst)
 	{
-		i++;
+		while (lst->next != NULL)
+		{
+			f(lst->content);
+			lst = lst->next;
+		}
+		f(lst->content);
 	}
-	return (i);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-int	main(void)
-{	char 	str[] = "abc";
-
-	printf("ft_strlen = %lu\n", ft_strlen(str));
-	printf("strlen = %lu\n", strlen(str));
-}*/

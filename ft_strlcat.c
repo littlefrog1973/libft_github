@@ -6,7 +6,7 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 06:32:22 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/13 17:25:51 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/08 23:43:27 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,18 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 #include <unistd.h>
 int	main(void)
 {
-	char	str1[15] = "rrrrrr\0\0\0\0\0\0\0\0a";
-	char	str3[15] = "rrrrrr\0\0\0\0\0\0\0\0a";
+	char	str1[15] = "rrrrrrrrrrrrrrr";
+	char	str3[15] = "rrrrrrrrrrrrrrr";
+	char	*str2;
 	unsigned int	i;
 
-	i = strlcat(str1, "lorem ipsum dolor sit amet", 15);
+	str2 = (char *) malloc(sizeof(char) * 15);
+	memset(str2, 'r', 15);
+	i = strlcat(str1, "lorem ipsum dolor sit amet", 5);
 	printf("return = %u\n", i);
 	write(1, str1, 15);
 	write(1, "\n", 1);	
-	i = ft_strlcat(str3, "lorem ipsum dolor sit amet", 15);
+	i = ft_strlcat(str2, "lorem ipsum dolor sit amet", 5);
 	printf("return = %u\n", i);
 	write(1, str3, 15);
 	write(1, "\n", 1);

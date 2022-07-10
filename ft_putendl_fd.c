@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 10:09:14 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/09 16:09:38 by sdeeyien         ###   ########.fr       */
+/*   Created: 2022/06/25 11:05:21 by sdeeyien          #+#    #+#             */
+/*   Updated: 2022/07/08 15:10:07 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <libft.h>
 
-size_t	ft_strlen(const char *s)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
+	if (s)
 	{
-		i++;
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
 	}
-	return (i);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-int	main(void)
-{	char 	str[] = "abc";
-
-	printf("ft_strlen = %lu\n", ft_strlen(str));
-	printf("strlen = %lu\n", strlen(str));
-}*/

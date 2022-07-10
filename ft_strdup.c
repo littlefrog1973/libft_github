@@ -6,7 +6,7 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:58:49 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/10 09:37:40 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/06/23 05:39:35 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,13 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	}
 	len = ft_strlcpy(s2, (char *) s1, len);
-	if (!len)
-	{
-		return (0);
-	}
-	else
-	{
-		return (s2);
-	}
+	return (s2);
 }
 /*
 #include <stdio.h>
 int	main(void)
 {
-	char	str1[] = "abcdefghij";
+	char	str1[] = "";
 	char	*str2;
 
 	str2 = ft_strdup(str1);

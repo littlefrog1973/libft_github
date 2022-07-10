@@ -6,7 +6,7 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:59:58 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/10 09:35:45 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/07 10:53:28 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_calloc(size_t count, size_t size)
 	if (!str)
 	{
 		errno = ENOMEM;
-		return (0);
+		return ((void *) NULL);
 	}
 	ft_bzero(str, count * size);
 	return (str);

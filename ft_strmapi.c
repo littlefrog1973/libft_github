@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 10:09:14 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/09 16:09:38 by sdeeyien         ###   ########.fr       */
+/*   Created: 2022/06/25 06:52:36 by sdeeyien          #+#    #+#             */
+/*   Updated: 2022/07/08 15:07:39 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-size_t	ft_strlen(const char *s)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	unsigned int	i;
+	size_t			len;
+	char			*target;
 
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	target = (char *) malloc(len + 1);
+	if (!target)
+		return ((char *) NULL);
 	i = 0;
-	while (s[i] != '\0')
+	while (i < len + 1)
 	{
+		target[i] = '\0';
 		i++;
 	}
-	return (i);
+	i = 0;
+	while (s[i])
+	{
+		target[i] = f(i, s[i]);
+		i++;
+	}
+	return (target);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-int	main(void)
-{	char 	str[] = "abc";
-
-	printf("ft_strlen = %lu\n", ft_strlen(str));
-	printf("strlen = %lu\n", strlen(str));
-}*/
