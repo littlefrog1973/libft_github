@@ -6,7 +6,7 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:46:02 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/09 06:10:21 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:36:08 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,20 @@ int	ft_atoi(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		if (base == 9223372036854775807 / 10 && *str >= '7' && sign == 1)
-		{
 			return (-1);
-		}
 		else if (base == 9223372036854775807 / 10 && *str >= '8' && sign == -1)
-		{
 			return (0);
-		}
 		else if (base > 9223372036854775807 / 10)
-		{
 			return (-(sign == 1));
-		}
 		else
-		{
 			base = base * 10 + *str - '0';
-		}
 		str++;
 	}
 	return ((int) base * sign);
 }
 /*
 #include <stdlib.h>
-
+#include <stdio.h>
 int	main(void)
 {
 //	char	str[] = "9223372036854775809";
@@ -73,7 +65,7 @@ int	main(void)
 	
 	printf("int of str (atoi) = %d\n", atoi(str));
 	printf("int of str (ft_atoi) = %d\n", ft_atoi(str));
-	printf("LONG_MAX = %ld\n",LONG_MAX);
-	printf("LONG_MIN = %ld\n",LONG_MIN);
+//	printf("LONG_MAX = %ld\n",LONG_MAX);
+//	printf("LONG_MIN = %ld\n",LONG_MIN);
 	return (0);
 }*/

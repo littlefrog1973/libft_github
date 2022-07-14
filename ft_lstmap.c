@@ -6,7 +6,7 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 05:50:10 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/07 15:07:32 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/11 14:20:30 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	tmp = NULL;
 	running = lst;
 	num_list = ft_lstsize(lst);
-	new = (t_list **) malloc(sizeof(t_list));
-	tmp = (t_list **) malloc(sizeof(t_list));
+	new = (t_list **) malloc(sizeof(t_list *));
+	tmp = (t_list **) malloc(sizeof(t_list *));
 	if (!new || !tmp)
 		return ((t_list *) NULL);
 	while (num_list > 0)
