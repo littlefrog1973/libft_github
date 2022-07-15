@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:46:02 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/11 15:36:08 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:15:15 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_atoi(const char *str)
 	long int	base;
 	int			sign;
 
+	if (!(*str) || !str)
+		return (0);
 	str = find_digit(str, &sign, &base);
 	while (*str >= '0' && *str <= '9')
 	{
@@ -62,7 +64,7 @@ int	main(void)
 //	char	str[] = "4611686018427387905";
 //	char	str[] = "2147483648";
 //	char	str[] = "2720202020";
-	
+
 	printf("int of str (atoi) = %d\n", atoi(str));
 	printf("int of str (ft_atoi) = %d\n", ft_atoi(str));
 //	printf("LONG_MAX = %ld\n",LONG_MAX);
