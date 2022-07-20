@@ -6,7 +6,7 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 09:23:42 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/13 23:43:04 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/18 13:30:03 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	begin;
 	size_t	end;
 
-	if ((!(s1) || !(set)) || (!(*s1) && (set)))
+	if ((!(s1) || !(set)) || (!(*s1)))
 		return (ft_strdup(""));
 	begin = 0;
-	end = ft_strlen(s1) - 1;
-	while (ft_strchr(set, s1[begin]))
+	end = ft_strlen(s1);
+	if (end > 0)
+		end--;
+	while (ft_strchr(set, s1[begin]) && s1[begin])
 		begin++;
 	while (ft_strchr(set, s1[end]) && end != 0)
 		end--;
@@ -46,17 +48,18 @@ int	main(void)
 {
 //	char	s1[] = "lorel ipsum dolor sit amet \n t";
 //	char	s1[] = "  \t \t \n  \n\n\n\t";
-	char	s1[] = "          ";
-	char	s4[] = " ";
-	char	s2[] = "";
+	char	s1[] = "      ";
+//	char	s4[] = " ";
+//	char	s2[] = "";
 	char	*s3;
 
-//char *ret = ft_strtrim(s1, " ");
+//char *ret = ft_strtrim(s1, "");
 
-	s3 = ft_strtrim(s1, s4);
+	printf("ft_strlen = %lu\n",ft_strlen("") - 1);
+	s3 = ft_strtrim(s1, " ");
 //	printf("%s\n", s1);
-	printf("In main:%p\n", s3);
-	printf("strcmp result = %d\n",strcmp(s3,s2));
+	printf("In main:%s\n", s3);
+//	printf("strcmp result = %d\n",strcmp(s3,s2));
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+         #
+#    By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 11:08:07 by sdeeyien          #+#    #+#              #
-#    Updated: 2022/07/14 23:54:36 by sdeeyien         ###   ########.fr        #
+#    Updated: 2022/07/15 00:02:20 by sdeeyien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ all : $(NAME)
 bonus : $(BONUS_OBJ)
 	ar -crs $(NAME) $(BONUS_OBJ)
 
-clean :
+clean : 
 	rm -f $(OBJ) $(BONUS_OBJ)
 
 fclean : clean
@@ -81,6 +81,6 @@ fclean : clean
 re : fclean all
 
 %.o : %.c
-	$(CC) -c $(CFLAGS)  $<
+	$(CC) -c $(CFLAGS)  $< 
 
 .PHONY: all clean fclean re

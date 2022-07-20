@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 07:56:29 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/14 16:06:00 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:47:50 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_atoi(const char *str);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_calloc(size_t count, size_t size);

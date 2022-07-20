@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
+/*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 06:32:22 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/14 23:56:04 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/14 23:59:15 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	size_src;
 
 	size_dst = ft_strlen(dst);
-	size_src = ft_strlen((char *) src);
+	size_src = ft_strlen(src);
 	if (dstsize < size_dst)
 		return (dstsize + size_src);
 	j = 0;
@@ -50,7 +50,7 @@ int	main(void)
 	i = strlcat(str1, "lorem ipsum dolor sit amet", 5);
 	printf("return = %u\n", i);
 	write(1, str1, 15);
-	write(1, "\n", 1);
+	write(1, "\n", 1);	
 	i = ft_strlcat(str2, "lorem ipsum dolor sit amet", 5);
 	printf("return = %u\n", i);
 	write(1, str3, 15);
