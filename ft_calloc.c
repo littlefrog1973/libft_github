@@ -6,16 +6,17 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:59:58 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/07 10:53:28 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/16 07:01:48 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <libft.h>
 
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*str;
 
+	if (count == SIZE_MAX || size == SIZE_MAX)
+		return ((void *) NULL);
 	str = malloc(count * size);
 	if (!str)
 	{
@@ -26,20 +27,24 @@ void	*ft_calloc(size_t count, size_t size)
 	return (str);
 }
 /*
-#include <stdio.h>
 #include <unistd.h>
 int	main(void)
 {
-	char	*str1;
+//	char	*str1;
 	char	*str2;
 	int	i;
 
-	str1 = (char *) ft_calloc(500000, 1);
-	str2 = (char *) calloc(500000, 1);
+	printf("SIZE_MAX = %lu\n", SIZE_MAX);
+//	str1 = (char *) ft_calloc(SIZE_MAX, 1);
+//	if (!str1)
+//		printf("ft_calloc cannot allocate\n");
+	str2 = (char *) calloc(SIZE_MAX, 1);
+	if (!str2)
+		printf("calloc cannot allocate\n");
 	i = 0;
 	while (i < 10)
 	{
-		write(1, str1,1);
+		write(1, str1, 1);
 		i++;
 		str1++;
 	}

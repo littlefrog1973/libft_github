@@ -6,7 +6,11 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:58:59 by sdeeyien          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/21 05:30:11 by sdeeyien         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/16 00:12:41 by sdeeyien         ###   ########.fr       */
+>>>>>>> 470585abbb1223bbc02a33f956d954148d8dd6c1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +21,22 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	size_t	len_to_cmp;
 
 	if (!*needle)
-	{
 		return ((char *) haystack);
-	}
 	len_to_cmp = ft_strlen(needle);
 	if (!haystack)
 		ft_memset(NULL, 1, 100);
-	while (haystack && len > 0)
+	while (*haystack && len > 0)
 	{
 		if (len < len_to_cmp)
+<<<<<<< HEAD
 		{
 			return (NULL);
 		}
+=======
+			return (0);
+>>>>>>> 470585abbb1223bbc02a33f956d954148d8dd6c1
 		if (!ft_strncmp(haystack, needle, len_to_cmp))
-		{
 			return ((char *) haystack);
-		}
 		haystack++;
 		len--;
 	}
@@ -45,9 +49,9 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 int	main(void)
 {
 	char str1[] = "abcdefghij";
-	char *str2 = NULL;
+	char *str2 = "";
 
-//	printf("%s\n", strnstr(str1, str2, 3));
-	printf("%s\n", ft_strnstr(str2, str1,3));
+	printf("%s\n", strnstr(str2, str1, -1));
+	printf("%s\n", ft_strnstr(str2, str1, -1));
 	return (0);
 }*/

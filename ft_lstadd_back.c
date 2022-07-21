@@ -6,7 +6,7 @@
 /*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:59:46 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/01 17:11:00 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:38:07 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*running;
 
-	if (*lst == NULL)
+	if (*lst == NULL && new != NULL)
 	{
 		*lst = new;
+		return ;
 	}
-	else
+	else if (*lst != NULL && new != NULL)
 	{
 		running = *lst;
 		while (running->next != NULL)
-		{
 			running = running->next;
-		}
 		running->next = new;
-		new->next = NULL;
 	}
 }
 /*
@@ -44,19 +42,29 @@ int	main(void)
 	t_list	**current;
 	int	i;
 
-	node0 = ft_lstnew((void *) "abc");
-	node1 = ft_lstnew((void *) "def");
-	node2 = ft_lstnew((void *) "ghi");
-	node3 = ft_lstnew((void *) "jkl");
-	node4 = ft_lstnew((void *) "xyz");
+	head = NULL;
+	current = NULL;
+	node0 = ft_lstnew((void *) 0);
+	node1 = ft_lstnew((void *) 1);
+	node2 = ft_lstnew((void *) 2);
+	node3 = ft_lstnew((void *) 3);
+	node4 = ft_lstnew((void *) 4);
+	printf("made individual list complete\n"); 
 
-	head = &node0;
+	head = (t_list **) calloc(sizeof(t_list *), 1);
+	current = (t_list **) calloc(sizeof(t_list *), 1);
+	ft_lstadd_back(head, node0);
+	printf("added 0th node\n"); 
 	ft_lstadd_back(head, node1);
+	printf("added 1nd node\n"); 
 	ft_lstadd_back(head, node2);
+	printf("added 2rd node\n"); 
 	ft_lstadd_back(head, node3);
+	printf("added 3th node\n"); 
 	ft_lstadd_back(head, node4);
-	printf("node 4->content = %s\n", node4->content);
-	printf("head's content = %s\n",(char *) (*head)->content);
+	printf("added 4th node\n"); 
+	printf("node 4->content = %d\n",*(int *) (node4->content));
+	printf("head's content = %d\n", *(int *) ((*head)->content));
 	i = 0;
 	current = head;
 	while ((*current != NULL))
