@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:58:59 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/06/23 12:00:10 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/21 05:30:11 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	{
 		if (len < len_to_cmp)
 		{
-			return (0);
-		}		
+			return (NULL);
+		}
 		if (!ft_strncmp(haystack, needle, len_to_cmp))
 		{
 			return ((char *) haystack);

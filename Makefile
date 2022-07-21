@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = cc
-CFLAGS += -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -I.
 DEPS = libft.h
 
 
@@ -72,8 +72,12 @@ all : $(NAME)
 bonus : $(BONUS_OBJ)
 	ar -crs $(NAME) $(BONUS_OBJ)
 
+so :
+	$(CC) -fPIC $(CFLAGS) $(SRC) $(BONUS_SRC)
+	gcc -shared -o libft.so $(OBJ) $(BONUS_OBJ)
+
 clean :
-	rm -f $(OBJ) $(BONUS_OBJ)
+	rm -f $(OBJ) $(BONUS_OBJ) libft.so
 
 fclean : clean
 	rm -f $(NAME)

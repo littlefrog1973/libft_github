@@ -6,7 +6,7 @@
 /*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 06:32:22 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/14 23:56:04 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:37:52 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	j = 0;
 	while (src[j] && j + 1 + size_dst < dstsize)
 	{
-		if ((dstsize - size_dst >= 1) && (j + 1 + size_dst < dstsize))
+		if ((dstsize - size_dst >= 1))
 		{
 			*(dst + size_dst + j) = *(src + j);
 		}

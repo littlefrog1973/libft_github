@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sdeeyien <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdeeyien <sukitd@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 09:23:42 by sdeeyien          #+#    #+#             */
-/*   Updated: 2022/07/13 23:43:04 by sdeeyien         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:31:50 by sdeeyien         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	begin;
 	size_t	end;
 
-	if ((!(s1) || !(set)) || (!(*s1) && (set)))
+	if ((!(s1) || !(set)) || (!(*s1) && (*set)))
 		return (ft_strdup(""));
 	begin = 0;
 	end = ft_strlen(s1) - 1;
